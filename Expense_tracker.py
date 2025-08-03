@@ -54,22 +54,32 @@ def average_expense(expenses):
         return 0
     return total_spent(expenses) / len(expenses)
 
-# Main logic
-expenses = load_expenses(file_path)
+if __name__ == "__main__":
+    # Main logic
+    try:
+        expenses = load_expenses(file_path)
 
-display_expenses(expenses)
-print(f"🧾 Total number of expenses: {count_expenses(expenses)}")
-print(f"💸 Total amount spent: ${total_spent(expenses):.2f}")
+        display_expenses(expenses)
+        print(f"🧾 Total number of expenses: {count_expenses(expenses)}")
+        print(f"💸 Total amount spent: ${total_spent(expenses):.2f}")
 
-category, count = most_common_category(expenses)
-print(f"📊 Most frequent category: {category} ({count} entries)")
+        category, count = most_common_category(expenses)
+        print(f"📊 Most frequent category: {category} ({count} entries)")
 
-month_totals = total_per_month(expenses)
-print("\n🗓️ Total spent per month:")
-for month, total in sorted(month_totals.items()):
-    print(f"  {month}: ${total:.2f}")
+        month_totals = total_per_month(expenses)
+        print("\n🗓️ Total spent per month:")
+        for month, total in sorted(month_totals.items()):
+            print(f"  {month}: ${total:.2f}")
 
-most_exp_month, most_exp_total = most_expensive_month(month_totals)
-print(f"\n💥 Most expensive month: {most_exp_month} (${most_exp_total:.2f})")
+        most_exp_month, most_exp_total = most_expensive_month(month_totals)
+        print(f"\n💥 Most expensive month: {most_exp_month} (${most_exp_total:.2f})")
 
-print(f"📉 Average expense amount: ${average_expense(expenses):.2f}")
+        print(f"📉 Average expense amount: ${average_expense(expenses):.2f}")
+    
+    except FileNotFoundError:
+        print(f"❌ File '{file_path}' not found!")
+        print("💡 Create an 'expenses.csv' file with the following format:")
+        print("Date,Amount,Category,Description")
+        print("2024-01-15,25.99,Food,Lunch")
+    except Exception as e:
+        print(f"❌ Error: {e}")
