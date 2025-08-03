@@ -48,11 +48,12 @@ class Calculator:
         for arg in args:
             self.result /= arg
         save_to_csv([["Result for division: "], [self.result]], file_path)
-print("Calculator initialized. Ready for calculations.")
-print('Previous results saved in Calculations.csv')
-read_csv(file_path)
-calculator = Calculator()
-calculator.add(1, 5)
-calculator.subtract(3,13)  
-calculator.multiply(2,4,7)
-calculator.divide(2)
+if __name__ == "__main__":
+    print("Calculator initialized. Ready for calculations.")
+    print('Previous results saved in Calculations.csv')
+    read_csv(file_path)
+    calculator = Calculator()
+    calculator.add(1, 5)
+    calculator.subtract(3,13)  
+    calculator.multiply(2,4,7)
+    calculator.divide(2)
